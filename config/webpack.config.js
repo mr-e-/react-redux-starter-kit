@@ -19,6 +19,7 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json']
   },
+  context: process.cwd(),
   module : {}
 }
 // ------------------------------------

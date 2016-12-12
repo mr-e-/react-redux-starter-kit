@@ -1,4 +1,4 @@
-import HomeRoute from 'routes/Home'
+import HomeRoute from 'state/Home'
 
 describe('(Route) Home', () => {
   let _component

@@ -488,7 +488,7 @@ Thanks to [StevenLangbroek](https://github.com/StevenLangbroek) for the followin
 * Refactors `todos` reducer to use a function map rather than switch statements.
 
 #### Fixes
-* Nested routes are now loaded correctly in react-router when using BrowserHistory.
+* Nested modules are now loaded correctly in react-router when using BrowserHistory.
 * Bundle compilation now fails if an eslint error is encountered when running a production build.
   - Thanks [clearjs](https://github.com/clearjs)
 * Upgrades all outdated dependencies.

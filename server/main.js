@@ -7,7 +7,27 @@ const compress = require('compression')
 
 const app = express()
 
-// This rewrites all routes requests to the root /index.html file
+var React = require('react');
+const ReactDOM = require('react-dom/server');
+
+require('babel-register')({
+  presets: ['es2015', 'react', 'stage-0']
+})
+
+app.set('view engine', 'ejs');
+app.get('/', function (req, res) {
+  console.log('starting...')
+  var createStore = require('../src/store/createStore').default
+  const store = createStore()
+  var ReactApp = require('../src/containers/AppContainer');
+  const routes = require('../src/modules/index').default(store)
+  var reactHtml = ReactDOM.renderToString(React.createElement(ReactApp, {store, routes}))
+  res.render("views/index", {markup: reactHtml})
+})
+
+
+
+// This rewrites all state requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
 // rendering, you'll want to remove this middleware.
 app.use(require('connect-history-api-fallback')())
