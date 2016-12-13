@@ -1,7 +1,8 @@
 const fs = require('fs-extra')
 const webpack = require('webpack')
 const debug = require('debug')('app:bin:compile')
-const webpackConfig = require('../config/webpack.config')
+const webpackClientConfig = require('../config/webpack.client.config')
+const webpackServerConfig = require('../config/webpack.server.config')
 const project = require('../config/project.config')
 
 // Wrapper around webpack to promisify its compiler and supply friendly logging
@@ -36,7 +37,8 @@ const webpackCompiler = (webpackConfig) =>
 const compile = () => {
   debug('Starting compiler.')
   return Promise.resolve()
-    .then(() => webpackCompiler(webpackConfig))
+    .then(() => webpackCompiler(webpackServerConfig))
+    .then(() => webpackCompiler(webpackClientConfig))
     .then(stats => {
       if (stats.warnings.length && project.compiler_fail_on_warning) {
         throw new Error('Config set to fail on warning, exiting with status code "1".')

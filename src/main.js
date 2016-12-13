@@ -21,10 +21,12 @@ let render = () => {
     <AppContainer store={store} routes={routes} />,
     MOUNT_NODE
   )
+  console.log('render')
 }
 
 // This code is excluded from production bundle
 if (__DEV__) {
+  console.log('doin shit')
   if (module.hot) {
     // Development render functions
     const renderApp = render
@@ -44,8 +46,9 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('./state/index', () =>
+    module.hot.accept('./modules/index', () =>
       setImmediate(() => {
+        console.log('doin more shit')
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()
       })
