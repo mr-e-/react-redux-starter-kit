@@ -22,6 +22,9 @@ const IS_RUNNING = new RegExp('server is running at', 'g')
 // Apply gzip compression
 app.use(compress())
 
+var apiServer = require(serverFile)
+apiServer(app)
+
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
@@ -45,8 +48,7 @@ if (project.env === 'development') {
   app.use(express.static(project.paths.public()))
 
 
-  // var apiServer = require('./server')
-  // apiServer(app)
+
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +

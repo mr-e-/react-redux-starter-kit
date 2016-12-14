@@ -36,6 +36,10 @@ webpackClientConfig.entry = {
   vendor : project.compiler_vendors
 }
 
+webpackClientConfig.sassLoader = {
+  includePaths : project.paths.client('styles')
+}
+
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
